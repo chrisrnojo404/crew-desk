@@ -1,0 +1,66 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: crew-desk-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-crew_desk}
+      POSTGRES_USER: ${POSTGRES_USER:-crew_desk}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-now}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-crew_desk} -d ${POSTGRES_DB:-crew_desk}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  directus:
+    image: directus/directus:11.17.4
+    container_name: crew-desk-directus
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8055:8055"
+    environment:
+      KEY: ${DIRECTUS_KEY:-crew-desk-dev-key-change-me}
+      SECRET: ${DIRECTUS_SECRET:-replace-with-a-long-random-secret}
+      PUBLIC_URL: ${DIRECTUS_PUBLIC_URL:-http://localhost:8055}
+      DB_CLIENT: pg
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: ${POSTGRES_DB:-crew_desk}
+      DB_USER: ${POSTGRES_USER:-crew_desk}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-change-me-now}
+      ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL:-admin@example.com}
+      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD:-change-me-now}
+      CORS_ENABLED: "true"
+      CORS_ORIGIN: "http://localhost:3000"
+      WEBSOCKETS_ENABLED: "true"
+      LOG_LEVEL: info
+    volumes:
+      - directus-uploads:/directus/uploads
+      - ./directus/extensions:/directus/extensions
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crew-desk-web
+    restart: unless-stopped
+    depends_on:
+      - directus
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+      NEXT_PUBLIC_DIRECTUS_URL: http://localhost:8055
+      DIRECTUS_INTERNAL_URL: http://directus:8055
+
+volumes:
+  postgres-data:
+  directus-uploads:
