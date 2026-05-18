@@ -30,7 +30,7 @@ const navItems = [
   { label: "Productions", href: "/productions", icon: Factory },
   { label: "Notifications", href: "/notifications", icon: Bell },
   { label: "Approvals", href: "/dashboard", icon: ClipboardCheck },
-  { label: "Reports", href: "/dashboard", icon: BarChart3 }
+  { label: "Reports", href: "/reports", icon: BarChart3 }
 ] as const;
 
 const adminNavItems = [

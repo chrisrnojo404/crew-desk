@@ -59,6 +59,12 @@ Phase 7 creates notification, automation rule, and workflow event collections:
 npm run directus:bootstrap:phase7
 ```
 
+Phase 8 creates reporting definitions and KPI snapshot collections:
+
+```bash
+npm run directus:bootstrap:phase8
+```
+
 ## Snapshot Strategy
 
 Directus schema snapshots should be exported into `directus/snapshots` once collections and permissions are configured:
