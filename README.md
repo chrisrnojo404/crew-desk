@@ -2,7 +2,7 @@
 
 Crew Desk is a modular enterprise operations platform for internal HR, inventory, gear desk, production planning, approvals, notifications, and reporting workflows.
 
-This repository currently contains **Phases 1-9**: project setup, Docker, Directus, PostgreSQL, authentication plumbing, user management, roles, permissions, admin directory screens, inventory/asset management, Gear Desk reservations, leave management, production planning, notifications/automation foundations, reporting analytics, and testing/optimization foundations.
+This repository currently contains **Phases 1-10**: project setup, Docker, Directus, PostgreSQL, authentication plumbing, user management, roles, permissions, admin directory screens, inventory/asset management, Gear Desk reservations, leave management, production planning, notifications/automation foundations, reporting analytics, testing/optimization foundations, and deployment preparation.
 
 ## Stack
 
@@ -100,6 +100,17 @@ After `package-lock.json` exists, the full stack can run with:
 docker compose up --build
 ```
 
+## Production Deployment
+
+Create `.env.production` from the production template, update all secrets, and start the hardened Compose overlay:
+
+```bash
+cp .env.production.example .env.production
+docker compose --env-file .env.production -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+```
+
+See the [Production Deployment Runbook](docs/deployment/production.md) for HTTPS, backup, restore, and go-live guidance.
+
 ## Quality Gate
 
 Run the full local quality gate before committing production changes:
@@ -121,7 +132,7 @@ This runs type checking, linting, unit tests, and the production build.
 7. Notifications and workflows - complete
 8. Reporting and analytics - complete
 9. Testing and optimization - complete
-10. Deployment
+10. Deployment - complete
 
 ## Documentation
 
@@ -134,4 +145,6 @@ This runs type checking, linting, unit tests, and the production build.
 - [Phase 7 Architecture](docs/architecture/phase-7.md)
 - [Phase 8 Architecture](docs/architecture/phase-8.md)
 - [Phase 9 Testing & Optimization](docs/architecture/phase-9.md)
+- [Phase 10 Deployment](docs/architecture/phase-10.md)
+- [Production Deployment Runbook](docs/deployment/production.md)
 - [Directus Setup](directus/README.md)
