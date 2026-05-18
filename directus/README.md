@@ -29,6 +29,12 @@ Phase 2 can create these roles and the first user-management fields automaticall
 npm run directus:bootstrap:phase2
 ```
 
+Phase 3 creates inventory collections, relationships, seed categories, and permission baselines:
+
+```bash
+npm run directus:bootstrap:phase3
+```
+
 ## Snapshot Strategy
 
 Directus schema snapshots should be exported into `directus/snapshots` once collections and permissions are configured:

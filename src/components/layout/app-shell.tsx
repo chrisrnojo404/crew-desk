@@ -22,7 +22,7 @@ import type { SessionUser } from "@/features/auth/types";
 const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Leave", href: "/dashboard", icon: CalendarDays },
-  { label: "Inventory", href: "/dashboard", icon: Boxes },
+  { label: "Inventory", href: "/inventory", icon: Boxes },
   { label: "Approvals", href: "/dashboard", icon: ClipboardCheck },
   { label: "Reports", href: "/dashboard", icon: BarChart3 }
 ] as const;
