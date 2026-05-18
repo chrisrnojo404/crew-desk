@@ -23,6 +23,12 @@ Phase 1 uses Directus as the backend CMS, authentication provider, REST API, Gra
    - Production Coordinator
    - Admin
 
+Phase 2 can create these roles and the first user-management fields automatically:
+
+```bash
+npm run directus:bootstrap:phase2
+```
+
 ## Snapshot Strategy
 
 Directus schema snapshots should be exported into `directus/snapshots` once collections and permissions are configured:

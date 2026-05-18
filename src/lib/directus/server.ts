@@ -23,7 +23,7 @@ export async function directusFetch<T>(
     }
   });
 
-  const payload = await response.json().catch(() => null);
+  const payload = response.status === 204 ? null : await response.json().catch(() => null);
 
   if (!response.ok) {
     return {

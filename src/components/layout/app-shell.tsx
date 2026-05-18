@@ -1,8 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { BarChart3, Boxes, CalendarDays, ClipboardCheck, LayoutDashboard, LogOut, Moon, Sun } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  BarChart3,
+  Boxes,
+  CalendarDays,
+  ClipboardCheck,
+  LayoutDashboard,
+  LogOut,
+  Moon,
+  ShieldCheck,
+  Sun,
+  Users
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -16,9 +27,21 @@ const navItems = [
   { label: "Reports", href: "/dashboard", icon: BarChart3 }
 ] as const;
 
+const adminNavItems = [
+  { label: "Users", href: "/admin/users", icon: Users },
+  { label: "Roles", href: "/admin/roles", icon: ShieldCheck }
+] as const;
+
+function canSeeAdminNav(user: SessionUser) {
+  const roleName = user.role?.name?.toLowerCase();
+  return Boolean(roleName === "admin" || roleName === "administrator" || roleName === "hr");
+}
+
 export function AppShell({ children, user }: { children: React.ReactNode; user: SessionUser }) {
   const router = useRouter();
+  const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
+  const showAdminNav = canSeeAdminNav(user);
 
   async function logout() {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -44,13 +67,33 @@ export function AppShell({ children, user }: { children: React.ReactNode; user: 
             <Link
               key={item.label}
               href={item.href}
-              className="flex h-10 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground"
+              className="flex h-10 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground data-[active=true]:bg-secondary data-[active=true]:text-foreground"
+              data-active={pathname === item.href}
             >
               <item.icon className="h-4 w-4" />
               {item.label}
             </Link>
           ))}
         </nav>
+        {showAdminNav ? (
+          <>
+            <Separator />
+            <div className="px-3 pt-4 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">Admin</div>
+            <nav className="grid gap-1 p-3">
+              {adminNavItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="flex h-10 items-center gap-3 rounded-md px-3 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground data-[active=true]:bg-secondary data-[active=true]:text-foreground"
+                  data-active={pathname === item.href}
+                >
+                  <item.icon className="h-4 w-4" />
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </>
+        ) : null}
       </aside>
 
       <div className="lg:pl-64">
@@ -75,6 +118,19 @@ export function AppShell({ children, user }: { children: React.ReactNode; user: 
             </Button>
           </div>
         </header>
+        <nav className="flex gap-2 overflow-x-auto border-b px-4 py-2 lg:hidden">
+          {[...navItems, ...(showAdminNav ? adminNavItems : [])].map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="flex h-9 shrink-0 items-center gap-2 rounded-md px-3 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground data-[active=true]:bg-secondary data-[active=true]:text-foreground"
+              data-active={pathname === item.href}
+            >
+              <item.icon className="h-4 w-4" />
+              {item.label}
+            </Link>
+          ))}
+        </nav>
         <main className="px-4 py-6 sm:px-6 lg:px-8">{children}</main>
       </div>
     </div>
