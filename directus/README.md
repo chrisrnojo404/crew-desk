@@ -35,6 +35,12 @@ Phase 3 creates inventory collections, relationships, seed categories, and permi
 npm run directus:bootstrap:phase3
 ```
 
+Phase 4 creates Gear Desk request, checkout, and damage-report collections:
+
+```bash
+npm run directus:bootstrap:phase4
+```
+
 ## Snapshot Strategy
 
 Directus schema snapshots should be exported into `directus/snapshots` once collections and permissions are configured:

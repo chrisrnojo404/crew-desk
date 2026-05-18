@@ -6,6 +6,7 @@ import {
   BarChart3,
   Boxes,
   CalendarDays,
+  ClipboardList,
   ClipboardCheck,
   LayoutDashboard,
   LogOut,
@@ -23,6 +24,7 @@ const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Leave", href: "/dashboard", icon: CalendarDays },
   { label: "Inventory", href: "/inventory", icon: Boxes },
+  { label: "Gear Desk", href: "/gear-desk", icon: ClipboardList },
   { label: "Approvals", href: "/dashboard", icon: ClipboardCheck },
   { label: "Reports", href: "/dashboard", icon: BarChart3 }
 ] as const;
