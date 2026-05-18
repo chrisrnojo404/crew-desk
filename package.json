@@ -9,6 +9,9 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "quality": "npm run typecheck && npm run lint && npm run test:run && npm run build",
     "directus:bootstrap:phase2": "node scripts/directus/bootstrap-phase-2.mjs",
     "directus:bootstrap:phase3": "node scripts/directus/bootstrap-phase-3.mjs",
     "directus:bootstrap:phase4": "node scripts/directus/bootstrap-phase-4.mjs",
@@ -38,6 +41,7 @@
     "@types/react-dom": "^19.0.2",
     "eslint": "^9.17.0",
     "eslint-config-next": "16.2.6",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.6"
   }
 }
