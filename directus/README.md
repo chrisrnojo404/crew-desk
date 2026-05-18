@@ -41,6 +41,12 @@ Phase 4 creates Gear Desk request, checkout, and damage-report collections:
 npm run directus:bootstrap:phase4
 ```
 
+Phase 5 creates leave management collections, seed leave types, and permission baselines:
+
+```bash
+npm run directus:bootstrap:phase5
+```
+
 ## Snapshot Strategy
 
 Directus schema snapshots should be exported into `directus/snapshots` once collections and permissions are configured:
