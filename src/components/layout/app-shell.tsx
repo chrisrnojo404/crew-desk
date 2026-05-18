@@ -8,6 +8,7 @@ import {
   CalendarDays,
   ClipboardList,
   ClipboardCheck,
+  Factory,
   LayoutDashboard,
   LogOut,
   Moon,
@@ -25,6 +26,7 @@ const navItems = [
   { label: "Leave", href: "/leave", icon: CalendarDays },
   { label: "Inventory", href: "/inventory", icon: Boxes },
   { label: "Gear Desk", href: "/gear-desk", icon: ClipboardList },
+  { label: "Productions", href: "/productions", icon: Factory },
   { label: "Approvals", href: "/dashboard", icon: ClipboardCheck },
   { label: "Reports", href: "/dashboard", icon: BarChart3 }
 ] as const;

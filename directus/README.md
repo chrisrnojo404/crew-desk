@@ -47,6 +47,12 @@ Phase 5 creates leave management collections, seed leave types, and permission b
 npm run directus:bootstrap:phase5
 ```
 
+Phase 6 creates production planning collections and relationships:
+
+```bash
+npm run directus:bootstrap:phase6
+```
+
 ## Snapshot Strategy
 
 Directus schema snapshots should be exported into `directus/snapshots` once collections and permissions are configured:

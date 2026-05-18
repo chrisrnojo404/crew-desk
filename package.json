@@ -12,7 +12,8 @@
     "directus:bootstrap:phase2": "node scripts/directus/bootstrap-phase-2.mjs",
     "directus:bootstrap:phase3": "node scripts/directus/bootstrap-phase-3.mjs",
     "directus:bootstrap:phase4": "node scripts/directus/bootstrap-phase-4.mjs",
-    "directus:bootstrap:phase5": "node scripts/directus/bootstrap-phase-5.mjs"
+    "directus:bootstrap:phase5": "node scripts/directus/bootstrap-phase-5.mjs",
+    "directus:bootstrap:phase6": "node scripts/directus/bootstrap-phase-6.mjs"
   },
   "dependencies": {
     "@directus/sdk": "21.3.0",
