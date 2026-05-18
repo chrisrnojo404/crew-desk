@@ -2,7 +2,7 @@
 
 Crew Desk is a modular enterprise operations platform for internal HR, inventory, gear desk, production planning, approvals, notifications, and reporting workflows.
 
-This repository currently contains **Phases 1-6**: project setup, Docker, Directus, PostgreSQL, authentication plumbing, user management, roles, permissions, admin directory screens, inventory/asset management, Gear Desk reservations, leave management, and production planning.
+This repository currently contains **Phases 1-7**: project setup, Docker, Directus, PostgreSQL, authentication plumbing, user management, roles, permissions, admin directory screens, inventory/asset management, Gear Desk reservations, leave management, production planning, and notifications/automation foundations.
 
 ## Stack
 
@@ -73,7 +73,13 @@ npm run directus:bootstrap:phase5
 npm run directus:bootstrap:phase6
 ```
 
-11. Open:
+11. Bootstrap Phase 7 notifications and automation collections:
+
+```bash
+npm run directus:bootstrap:phase7
+```
+
+12. Open:
 
 - Frontend: `http://localhost:3000`
 - Directus: `http://localhost:8055`
@@ -96,7 +102,7 @@ docker compose up --build
 4. Gear desk module - complete
 5. Leave management - complete
 6. Production planning - complete
-7. Notifications and workflows
+7. Notifications and workflows - complete
 8. Reporting and analytics
 9. Testing and optimization
 10. Deployment
@@ -109,4 +115,5 @@ docker compose up --build
 - [Phase 4 Architecture](docs/architecture/phase-4.md)
 - [Phase 5 Architecture](docs/architecture/phase-5.md)
 - [Phase 6 Architecture](docs/architecture/phase-6.md)
+- [Phase 7 Architecture](docs/architecture/phase-7.md)
 - [Directus Setup](directus/README.md)

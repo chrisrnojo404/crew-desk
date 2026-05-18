@@ -53,6 +53,12 @@ Phase 6 creates production planning collections and relationships:
 npm run directus:bootstrap:phase6
 ```
 
+Phase 7 creates notification, automation rule, and workflow event collections:
+
+```bash
+npm run directus:bootstrap:phase7
+```
+
 ## Snapshot Strategy
 
 Directus schema snapshots should be exported into `directus/snapshots` once collections and permissions are configured:

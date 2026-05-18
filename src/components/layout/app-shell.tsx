@@ -12,6 +12,7 @@ import {
   LayoutDashboard,
   LogOut,
   Moon,
+  Bell,
   ShieldCheck,
   Sun,
   Users
@@ -27,6 +28,7 @@ const navItems = [
   { label: "Inventory", href: "/inventory", icon: Boxes },
   { label: "Gear Desk", href: "/gear-desk", icon: ClipboardList },
   { label: "Productions", href: "/productions", icon: Factory },
+  { label: "Notifications", href: "/notifications", icon: Bell },
   { label: "Approvals", href: "/dashboard", icon: ClipboardCheck },
   { label: "Reports", href: "/dashboard", icon: BarChart3 }
 ] as const;
@@ -107,6 +109,11 @@ export function AppShell({ children, user }: { children: React.ReactNode; user: 
             <p className="truncate text-xs text-muted-foreground">{user.email}</p>
           </div>
           <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" aria-label="Notifications" asChild>
+              <Link href="/notifications">
+                <Bell className="h-4 w-4" />
+              </Link>
+            </Button>
             <Button
               variant="ghost"
               size="icon"
